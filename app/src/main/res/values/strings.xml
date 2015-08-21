@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mobile Timetabler</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_new_appoinment">NewAppoinmentActivity</string>
+    <string name="title_activity_delete_appoinment">DeleteAppoinmentActivity</string>
+</resources>
