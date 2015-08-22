@@ -1,13 +1,23 @@
 <resources>
-    <string name="app_name">Mobile Timetabler</string>
+    <string name="app_name">Mobile Timetable</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">Mobile Timetabler</string>
     <string name="title_activity_new_appointment">NewAppointmentActivity</string>
     <string name="title_activity_delete_appointment">DeleteAppointmentActivity</string>
     <string name="button_text_new">New appointment</string>
-    <string name="button_text_del">Delete appointment</string>
+    <string name="button_text_del">Delete appointment(s)</string>
     <string name="button_text_create">Create appointment</string>
     <string name="button_text_back">Back</string>
     <string name="button_text_delete">Delete selected</string>
+    <string name="text_view_text_radio_group">Day</string>
+    <string name="radio_button_text_mon">Mon</string>
+    <string name="radio_button_text_tue">Tue</string>
+    <string name="radio_button_text_wed">Wed</string>
+    <string name="radio_button_text_thu">Thur</string>
+    <string name="radio_button_text_fri">Fri</string>
+    <string name="text_view_text_time">Time</string>
+    <string name="text_view_text_duration">Duration</string>
+    <string name="text_view_text_description">Description</string>
 </resources>

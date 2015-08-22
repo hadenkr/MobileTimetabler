@@ -41,11 +41,11 @@ public class DeleteAppointmentActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-/*
+
     public void onClick(View view) {
 
     }
-*/
+
     public void onDeleteRadioButtonClicked(View view) {
 
     }

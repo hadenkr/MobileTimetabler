@@ -8,22 +8,26 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Choongyeol Kim on 22/08/2015.
  */
 public class MySQLiteHelper extends SQLiteOpenHelper {
-    private static final String TABLE_APPOINTMENTS = "";
-    private static final String COLUMN_ID = "";
-    private static final String COLUMN_DAY = "";
-    private static final String COLUMN_TIME = "";
-    private static final String COLUMN_DURATION = "";
-    private static final String COLUMN_DESCRIPTION = "";
+    private static final String TABLE_APPOINTMENTS = "appointments";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_DAY = "app_day";
+    private static final String COLUMN_TIME = "app_time";
+    private static final String COLUMN_DURATION = "duration";
+    private static final String COLUMN_DESCRIPTION = "description";
     private static final String DATABASE_NAME = "timetable.db";
+    private static final String DATABASE_CREATE = " (id INTEGER PRIMARY KEY AUTOINCREMENT, app_day INTEGER NOT NULL, app_time VARCHAR(10) NOT NULL, duration VARCHAR(20), description VARCHAR(255));";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_CREATE = "";
 
-    private static MySQLiteHelper instance;// = new MySQLiteHelper();
+    private volatile static MySQLiteHelper instance;
 
-    //public static MySQLiteHelper getInstance() { return instance; }
-    public static MySQLiteHelper getInstance(Context context) {
+    public static MySQLiteHelper getInstance(final Context context) {
+        // DCL(Double-Checking Locking) >= JDK 1.4
         if (instance == null) {
-            instance = new MySQLiteHelper(context.getApplicationContext());
+            synchronized (MySQLiteHelper.class) {
+                if (instance == null) {
+                    instance = new MySQLiteHelper(context.getApplicationContext());
+                }
+            }
         }
         return instance;
     }
@@ -34,11 +38,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        StringBuilder sb = new StringBuilder("CREATE TABLE ");
+        sb.append(TABLE_APPOINTMENTS).append(DATABASE_CREATE);
+        db.execSQL(sb.toString());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        StringBuilder sb = new StringBuilder("DROP TABLE IF EXISTS ");
+        sb.append(TABLE_APPOINTMENTS).append(";");
+        db.execSQL(sb.toString());
+        onCreate(db);
     }
 }

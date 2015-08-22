@@ -40,11 +40,11 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-/*
+
     public void onClick(View view) {
 
     }
-*/
+
     public void onRadioButtonClicked(View view) {
 
     }
