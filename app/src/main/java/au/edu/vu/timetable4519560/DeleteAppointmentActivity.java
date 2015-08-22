@@ -4,13 +4,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class DeleteAppoinmentActivity extends AppCompatActivity {
+import java.util.List;
+
+/**
+ * Created by Choongyeol Kim on 21/08/2015.
+ */
+public class DeleteAppointmentActivity extends AppCompatActivity {
+    private List<Appointment> appointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_appoinment);
+        setContentView(R.layout.activity_delete_appointment);
     }
 
     @Override
@@ -33,5 +40,17 @@ public class DeleteAppoinmentActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+/*
+    public void onClick(View view) {
+
+    }
+*/
+    public void onDeleteRadioButtonClicked(View view) {
+
+    }
+
+    public void populateAppointmentCheckboxes() {
+
     }
 }
