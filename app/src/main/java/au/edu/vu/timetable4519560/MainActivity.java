@@ -3,54 +3,59 @@ package au.edu.vu.timetable4519560;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Choongyeol Kim on 21/08/2015.
  */
 public class MainActivity extends AppCompatActivity {
-
-    private List<Appointment> appointments;
+    private List<AppointmentGroup> mGroupList;
+    private AppointmentGroupAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Log.d(this.getClass().getName(), "Create Start");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initResources();
+
+        //Log.d(this.getClass().getName(), "Create End");
     }
 
     @Override
     public void onResume() {
+        //Log.d(this.getClass().getName(), "Resume Start");
+
         super.onResume();
+
+        getAllAppointments();
+        mListAdapter.notifyDataSetChanged();
+
+        //Log.d(this.getClass().getName(), "Resume End");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void initResources() {
+        mGroupList = new ArrayList<>();
+        for (DayClass day : DayClass.values()) {
+            mGroupList.add(new AppointmentGroup(day));
         }
 
-        return super.onOptionsItemSelected(item);
+        mListAdapter = new AppointmentGroupAdapter(this, R.layout.appointment_group_row, 0, mGroupList);
+        final ListView listView = (ListView) findViewById(R.id.listViewMain);
+        listView.setAdapter(mListAdapter);
     }
 
-    public void populateSchedule() {
-
+    private void getAllAppointments() {
+        //Log.d(this.getClass().getName(), "getAllAppointments Start");
+        AppointmentDataSource.getInstance().getAllGroupAppointments(mGroupList);
+        //Log.d(this.getClass().getName(), "getAllAppointments End");
     }
 
     public void createNewAppointment(View view) {

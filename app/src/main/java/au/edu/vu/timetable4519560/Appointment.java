@@ -4,57 +4,75 @@ package au.edu.vu.timetable4519560;
  * Created by Choongyeol Kim on 22/08/2015.
  */
 public class Appointment {
-    private long id;
-    private int day;
-    private String time;
-    private String duration;
-    private String description;
+    private static final String DELIMITER = ", ";
+    private static final String DEFAULT_TIME = "No time";
+    private static final String DEFAULT_DURATION = "No duration";
+    private static final String DEFAULT_DESCRIPTION = "No description";
+    private int mId;
+    private DayClass mDay;
+    private String mTime;
+    private String mDuration;
+    private String mDescription;
 
-    Appointment() {
-
+    public int getId() {
+        return mId;
     }
 
-    public long getId() {
-        return id;
+    public void setId(int id) {
+        this.mId = id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public DayClass getDay() {
+        return mDay;
     }
 
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
+    public void setDay(DayClass day) {
+        this.mDay = day;
     }
 
     public String getTime() {
-        return time;
+        return mTime;
     }
 
     public void setTime(String time) {
-        this.time = time;
+        if (time == null || time.isEmpty())
+            this.mTime = DEFAULT_TIME;
+        else
+            this.mTime = time;
     }
 
     public String getDuration() {
-        return duration;
+        return mDuration;
     }
 
     public void setDuration(String duration) {
-        this.duration = duration;
+        if (duration == null || duration.isEmpty())
+            this.mDuration = DEFAULT_DURATION;
+        else
+            this.mDuration = duration;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        if (description == null || description.isEmpty())
+            this.mDescription = DEFAULT_DESCRIPTION;
+        else
+            this.mDescription = description;
     }
 
-    void display() {
+    public boolean isValid() {
+        if (mDay != null && mTime != null && mDuration != null) {
+            if (!mTime.isEmpty() && !mDuration.isEmpty())
+                return true;
+        }
 
+        return false;
+    }
+
+    public String toString() {
+        return mTime + DELIMITER + mDuration + DELIMITER + mDescription;
     }
 }
