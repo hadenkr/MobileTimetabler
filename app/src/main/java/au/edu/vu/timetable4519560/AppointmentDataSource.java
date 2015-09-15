@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -66,17 +65,6 @@ public class AppointmentDataSource extends Application {
     }
 
     private void insert1(Appointment appointment) {
-        //StringBuilder sb = new StringBuilder("INSERT INTO ");
-        //sb.append(MySQLiteHelper.TABLE_APPOINTMENTS).append(" (")
-        //        .append(MySQLiteHelper.COLUMN_DAY_NAME).append(DELIMITER_1)
-        //        .append(MySQLiteHelper.COLUMN_TIME_NAME).append(DELIMITER_1)
-        //        .append(MySQLiteHelper.COLUMN_DURATION_NAME).append(DELIMITER_1)
-        //        .append(MySQLiteHelper.COLUMN_DESCRIPTION_NAME).append(") VALUES ('")
-        //        .append(DayClass.toInteger(appointment.getDay())).append(DELIMITER_2)
-        //        .append(appointment.getTime()).append(DELIMITER_2)
-        //        .append(appointment.getDuration()).append(DELIMITER_2)
-        //        .append(appointment.getDescription()).append("');");
-        //String sqlStr = sb.toString();
         String sqlStr = "INSERT INTO " +
                 MySQLiteHelper.TABLE_APPOINTMENTS + " (" +
                 MySQLiteHelper.COLUMN_DAY_NAME + DELIMITER_1 +
@@ -109,11 +97,6 @@ public class AppointmentDataSource extends Application {
     }
 
     private void delete1(String list) {
-        //StringBuilder sb = new StringBuilder("DELETE FROM ");
-        //sb.append(MySQLiteHelper.TABLE_APPOINTMENTS).append(" WHERE ")
-        //        .append(MySQLiteHelper.COLUMN_ID_NAME).append(" IN (").append(list).append(")");
-
-        //String sqlStr = sb.toString();
         String sqlStr = "DELETE FROM " +
                 MySQLiteHelper.TABLE_APPOINTMENTS + " WHERE " +
                 MySQLiteHelper.COLUMN_ID_NAME + " IN (" +
@@ -123,10 +106,6 @@ public class AppointmentDataSource extends Application {
     }
 
     private void delete2(String list) {
-        //StringBuilder sb = new StringBuilder(MySQLiteHelper.COLUMN_ID_NAME);
-        //sb.append(" IN (").append(list).append(")");
-
-        //String sqlStr = sb.toString();
         String sqlStr = MySQLiteHelper.COLUMN_ID_NAME + " IN (" + list + ")";
         //Log.d(this.getClass().getName(), sqlStr);
 
@@ -154,10 +133,6 @@ public class AppointmentDataSource extends Application {
 
     public void getAllGroupAppointments(List<AppointmentGroup> groupList) {
         //Log.d(this.getClass().getName(), "getAllGroupAppointments Start");
-        //Iterator<AppointmentGroup> iterator = groupList.iterator();
-        //while (iterator.hasNext()) {
-        //    iterator.next().clear();
-        //}
         for (AppointmentGroup group : groupList) {
             group.clear();
         }
@@ -218,15 +193,6 @@ public class AppointmentDataSource extends Application {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            //StringBuilder sb = new StringBuilder(DATABASE_CREATE);
-            //sb.append(TABLE_APPOINTMENTS).append(" (")
-            //        .append(COLUMN_ID_NAME).append(" ").append(COLUMN_ID).append(", ")
-            //        .append(COLUMN_DAY_NAME).append(" ").append(COLUMN_DAY).append(", ")
-            //        .append(COLUMN_TIME_NAME).append(" ").append(COLUMN_TIME).append(", ")
-            //        .append(COLUMN_DURATION_NAME).append(" ").append(COLUMN_DURATION).append(", ")
-            //        .append(COLUMN_DESCRIPTION_NAME).append(" ").append(COLUMN_DESCRIPTION).append(")");
-
-            //String sqlStr = sb.toString();
             String sqlStr = DATABASE_CREATE +
                     TABLE_APPOINTMENTS + " (" +
                     COLUMN_ID_NAME + " " + COLUMN_ID + ", " +
@@ -242,9 +208,6 @@ public class AppointmentDataSource extends Application {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            //StringBuilder sb = new StringBuilder("DROP TABLE IF EXISTS ");
-            //sb.append(TABLE_APPOINTMENTS);
-            //String sqlStr = sb.toString();
             String sqlStr = "DROP TABLE IF EXISTS " + TABLE_APPOINTMENTS;
             db.execSQL(sqlStr);
             onCreate(db);

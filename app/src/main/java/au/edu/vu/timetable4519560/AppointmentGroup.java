@@ -34,17 +34,12 @@ public class AppointmentGroup {
     }
 
     public boolean add(Appointment appointment) {
-        if (!mList.isEmpty()) {
-            //Iterator<Appointment> iterator = mList.iterator();
-            //while (iterator.hasNext()) {
-            //    if (appointment.getId() == iterator.next().getId())
-            //        return false;
-            //}
+        //if (!mList.isEmpty()) {
             for (Appointment element : mList) {
                 if (appointment.getId() == element.getId())
                     return false;
             }
-        }
+        //}
         mList.add(appointment);
         return true;
     }

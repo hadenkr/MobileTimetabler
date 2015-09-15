@@ -269,16 +269,6 @@ public class CustomAdapter<T> extends BaseAdapter implements Filterable {
                         newValues.add(value);
                     } else {
                         final String[] words = valueText.split(" ");
-                        //final int wordCount = words.length;
-
-                        // Start at index 0, in case valueText starts with space(s)
-                        //for (int k = 0; k < wordCount; k++) {
-                        //    if (words[k].startsWith(prefixString)) {
-                        //        newValues.add(value);
-                        //        break;
-                        //    }
-                        //}
-
                         for (String word : words) {
                             if (word.startsWith(prefixString)) {
                                 newValues.add(value);
